@@ -1,8 +1,8 @@
 <template>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga asperiores
-    aut dignissimos voluptatum sequi autem magni provident delectus consequatur
-    explicabo.
+    Ich bin Valentino Panico und bin am 28.08.2004 geboren. Ich wohne in
+    Kreuzlingen und mache eine Lehre als Informatiker bei der Lenze Swiss AG in
+    Romanshorn.
   </p>
 </template>
 
