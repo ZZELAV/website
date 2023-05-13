@@ -21,10 +21,9 @@ export default {};
 </script>
 
 <style scoped>
-@import "@/assets/base.css";
+@import "@/assets/main.css";
 
 main {
-  margin: var(--rem-700) auto;
   width: fit-content;
 }
 .home__name {
@@ -57,9 +56,6 @@ main {
 }
 
 @media screen and (max-width: 768px) {
-  main {
-    margin-top: var(--rem-600);
-  }
   .home__name {
     font-size: var(--font-400);
     line-height: 2.6rem;
