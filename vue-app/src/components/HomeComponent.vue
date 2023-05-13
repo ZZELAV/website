@@ -23,9 +23,6 @@ export default {};
 <style scoped>
 @import "@/assets/main.css";
 
-main {
-  width: fit-content;
-}
 .home__name {
   font-size: var(--font-500);
   font-weight: bold;
