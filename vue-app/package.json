@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && cd dist && git init && git add -A && git commit -m deploy && git push -f git@github.com:zzelav/website.git master:gh-pages"
   },
   "dependencies": {
     "vue": "^3.2.47",
