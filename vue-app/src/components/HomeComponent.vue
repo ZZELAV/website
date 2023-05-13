@@ -8,13 +8,13 @@
         alt="Valentino Panico"
       />
     </div>
-    <p class="home__description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga asperiores
-      aut dignissimos voluptatum sequi autem magni provident delectus
-      consequatur explicabo.
-    </p>
+    <TextShortComponent class="home__description" />
   </main>
 </template>
+
+<script setup>
+import TextShortComponent from "./TextShortComponent.vue";
+</script>
 
 <script>
 export default {};
