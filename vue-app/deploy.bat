@@ -1,6 +1,6 @@
 @echo off
 
-npm "run" "deploy"
+npm "run" "build"
 
 cd "dist"
 
