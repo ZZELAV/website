@@ -56,6 +56,7 @@ header i {
   transition: all 0.3s ease-in-out;
   margin-right: 1rem;
   border-bottom: var(--rem-100) solid transparent;
+  text-transform: uppercase;
 }
 header ul li a:hover {
   color: var(--color-accent);
