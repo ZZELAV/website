@@ -6,3 +6,16 @@ main {
   margin: var(--rem-600) auto;
   width: fit-content;
 }
+
+.button-100 {
+  background-color: var(--color-200);
+  color: var(--color-600);
+  padding: var(--rem-200) var(--rem-400);
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-100:hover {
+  background-color: var(--color-100);
+  box-shadow: 0 0 20px var(--color-200);
+}
