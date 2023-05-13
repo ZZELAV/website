@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../assets/base.css";
+@import "@/assets/base.css";
 
 header {
   padding: var(--rem-300) var(--rem-300) var(--rem-200);
