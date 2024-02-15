@@ -1,0 +1,18 @@
+[
+    {
+        "image": "/3d-art/220-3840x2160.jpg",
+        "description": "Lorem ipsum 1"
+    },
+    {
+        "image": "/3d-art/367-3840x2160.jpg",
+        "description": "Lorem ipsum 2"
+    },
+    {
+        "image": "/3d-art/478-3840x2160.jpg",
+        "description": "Lorem ipsum 3"
+    },
+    {
+        "image": "/3d-art/1065-3840x2160.jpg",
+        "description": "Lorem ipsum 4"
+    }
+]
