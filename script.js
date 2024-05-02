@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `prename          valentino<br>` +
             `birthday         28th of august 2004<br>` +
             `residence        kreuzlingen, ch-8280 switzerland<br>` +
-            `job              computer scientist<br` +
+            `job              computer scientist<br>` +
             `e-mail           <a href="mailto:valentino.panico@icloud.com">valentino.panico@icloud.com</a><br><br>` +
             `# job experience<br>` +
             `2020 - now       computer scientist - lenze swiss ag, romanshorn<br><br>` +
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "repo":
         outputGenerator(
-          `<a href="https://github.com/ZZELAV/terminal-portfolio" target="_blank">https://github.com/ZZELAV/terminal-portfolio</a>`
+          `<a href="https://github.com/ZZELAV/website" target="_blank">https://github.com/ZZELAV/website</a>`
         );
         break;
       case "skills":
