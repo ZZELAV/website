@@ -57,31 +57,32 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "help":
         outputGenerator(
-          `about            about me<br>` +
-            `clear            clear the terminal<br>` +
-            `help             show this help page<br>` +
-            `projects         list my projects<br>` +
-            `repo             link to the github repository<br>` +
-            `skills           list my skills<br>` +
-            `socials          show links to socials<br>` +
-            `whois            who am i`
+          `about          about me<br>` +
+            `clear          clear the terminal<br>` +
+            `help           show this help page<br>` +
+            `projects       list my projects<br>` +
+            `repo           link to the github repository<br>` +
+            `socials        show links to socials<br>` +
+            `whois          who am i`
         );
         break;
       case "projects":
-        outputGenerator(``);
+        outputGenerator(
+          `<a href="https://github.com/ZZELAV/lernjournal" target="_blank">lernjournal</a>              documentation of different tasks durring my apprenticeship<br>` +
+            `<a href="https://github.com/ZZELAV/docusaurus-template" target="_blank">docusaurus-template</a>      customized docusaurus<br>` +
+            `<a href="https://github.com/ZZELAV/ventoy-usb" target="_blank">ventoy-usb</a>               template for a ventoy boot usb-stick<br>` +
+            `<a href="https://github.com/ZZELAV/DogeRadio" target="_blank">dogeradio</a>                a small application to play different radio stations`
+        );
         break;
       case "repo":
         outputGenerator(
           `<a href="https://github.com/ZZELAV/terminal-portfolio" target="_blank">https://github.com/ZZELAV/terminal-portfolio</a>`
         );
         break;
-      case "skills":
-        outputGenerator(``);
-        break;
       case "socials":
         outputGenerator(
-          `<a href="https://github.com/ZZELAV" target="_blank">github</a><br>` +
-            `<a href="https://www.linkedin.com/in/valentino-panico-87ba49262" target="_blank">linkedin</a>`
+          `<a href="https://github.com/ZZELAV" target="_blank">github/zzelav</a><br>` +
+            `<a href="https://www.linkedin.com/in/valentino-panico-87ba49262" target="_blank">linkedin/valentino-panico</a>`
         );
         break;
       case "whois":
