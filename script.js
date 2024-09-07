@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `# education<br>` +
             `2020 - 2024      apprenticeship (computer scientist efz) - bzt, frauenfeld<br>` +
             `2017 - 2020      secondary school (level e) - sbw talent campus bodensee, kreuzlingen<br>` +
-            `2011 - 2017      primary school - kreuzlingen`
+            `2011 - 2017      primary school - kreuzlingen<br><br>` +
+            `# others <br>` +
+            `2024 - now       military service as infantry crew member`
         );
         break;
       case "clear":
@@ -90,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
           `hi 👋. i'm valentino panico.<br>` +
             `i was born on the 28th of august in 2004.<br>` +
             `i live in kreuzlingen 🇨🇭 and i'm doing an apprenticeship<br>` +
-            `as a computer scientist 🖥️ at lenze swiss ag in romanshorn 🇨🇭.`
+            `as a computer scientist 🖥️ at lenze swiss ag in romanshorn 🇨🇭.<br>` +
+            `currently i'm doing my military service as infantry crew member 🛡️.`
         );
         break;
       default:
