@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   inputPrompt.innerHTML = username;
   outputField.innerHTML +=
     `<p class="output-history">valentino panico | shell<br>` +
-    `version 1.0<br><br>` +
+    `version 2.0<br><br>` +
     `type 'help' for a list of all commands</p>`;
 
   htmlElement.addEventListener("click", function () {
@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
       case "socials":
         outputGenerator(
           `<a href="https://github.com/ZZELAV" target="_blank">github/zzelav</a><br>` +
-            `<a href="https://www.linkedin.com/in/valentino-panico-87ba49262" target="_blank">linkedin/valentino-panico</a>`
+            `<a href="https://www.linkedin.com/in/valentino-panico-87ba49262" target="_blank">linkedin/valentino-panico</a><br>` +
+            `<a href="https://x.com/zzelavX" target="_blank">x/zzelavX</a>`
         );
         break;
       case "whois":
@@ -93,7 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `i was born on the 28th of august in 2004.<br>` +
             `i live in kreuzlingen 🇨🇭 and i'm doing an apprenticeship<br>` +
             `as a computer scientist 🖥️ at lenze swiss ag in romanshorn 🇨🇭.<br>` +
-            `currently i'm doing my military service as infantry crew member 🛡️.`
+            `currently i'm doing my military service as infantry crew member 🛡️.<br><br>` +
+            `in my free time i like to work on my homeserver.<br>` +
+            `i constantly try new technologies to learn about them.`
         );
         break;
       default:

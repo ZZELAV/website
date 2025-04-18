@@ -5,6 +5,26 @@
   --color-text: #fff1a1;
 }
 
+html[data-theme="1"] {
+  --color-background: #002c41;
+  --color-text: #fff1a1;
+}
+
+html[data-theme="2"] {
+  --color-background: #ac8968;
+  --color-text: #3e362e;
+}
+
+html[data-theme="3"] {
+  --color-background: #1f2833;
+  --color-text: #66fcf1;
+}
+
+html[data-theme="4"] {
+  --color-background: #687864;
+  --color-text: #8fc1e3;
+}
+
 * {
   margin: 0;
   padding: 0;
