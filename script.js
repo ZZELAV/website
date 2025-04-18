@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
 
-  var username = "guest";
+  var username = localStorage.getItem("username") || "guest";
+
+  loadSavedTheme();
 
   inputPrompt.innerHTML = username;
-  outputField.innerHTML +=
+  outputField.innerHTML =
     `<p class="output-history">valentino panico | shell<br>` +
     `version 2.0<br><br>` +
     `type 'help' for a list of all commands</p>`;
@@ -31,6 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function proccessCommand(command) {
     outputField.innerHTML += `<span class="output-history">${username} &#10148; ${command}</span>`;
+
+    if (command.toLowerCase().startsWith("user ")) {
+      const newUsername = command.split(" ")[1];
+      changeUser(newUsername);
+      return;
+    }
+
+    if (command.toLowerCase().startsWith("theme ")) {
+      const themeNumber = command.split(" ")[1];
+      switchTheme(themeNumber);
+      return;
+    }
+
     switch (command.toLowerCase()) {
       case "":
         outputField.innerHTML += `<p></p>`;
@@ -65,7 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
             `projects       list my projects<br>` +
             `repo           link to the github repository<br>` +
             `socials        show links to socials<br>` +
-            `whois          who am i`
+            `whois          who am i<br><br>` +
+            `user NAME      change user to NAME<br>` +
+            `logout         logout current user<br>` +
+            `theme #        switch theme to #`
         );
         break;
       case "projects":
@@ -99,6 +117,21 @@ document.addEventListener("DOMContentLoaded", function () {
             `i constantly try new technologies to learn about them.`
         );
         break;
+      case "logout":
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.removeItem("selectedTheme");
+
+        document.documentElement.removeAttribute("data-font");
+        localStorage.removeItem("selectedFont");
+
+        username = "guest";
+        localStorage.removeItem("username");
+        inputPrompt.innerHTML = username;
+
+        outputGenerator(
+          `user logged out<br>` + `all settings reset to default`
+        );
+        break;
       default:
         outputGenerator(
           `unknown command<br>` + `type 'help' for a list of all commands`
@@ -109,5 +142,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function outputGenerator(output) {
     outputField.innerHTML += `<p class="output-history">${output}</p>`;
+  }
+
+  function changeUser(newUsername) {
+    if (!newUsername || newUsername.trim() === "") {
+      outputGenerator(`user cannot be empty`);
+      return;
+    }
+
+    username = newUsername;
+    localStorage.setItem("username", username);
+    inputPrompt.innerHTML = username;
+
+    outputGenerator(`user changed to ${username}`);
+
+    window.scrollTo(0, htmlElement.scrollHeight);
+  }
+
+  function switchTheme(themeNumber) {
+    if (themeNumber > 0 && themeNumber < 8) {
+      document.documentElement.removeAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", themeNumber);
+
+      outputGenerator(`theme switched to ${themeNumber}`);
+
+      saveTheme(themeNumber);
+
+      window.scrollTo(0, htmlElement.scrollHeight);
+    } else {
+      outputGenerator(`theme ${themeNumber} does not exist`);
+    }
+  }
+
+  function saveTheme(themeNumber) {
+    localStorage.setItem("selectedTheme", themeNumber);
+  }
+
+  function loadSavedTheme() {
+    const savedTheme = localStorage.getItem("selectedTheme");
+
+    if (saveTheme) {
+      switchTheme(savedTheme);
+    }
   }
 });

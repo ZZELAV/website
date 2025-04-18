@@ -3,6 +3,7 @@
 :root {
   --color-background: #002c41;
   --color-text: #fff1a1;
+  --font-family: "Roboto Mono", monospace;
 }
 
 html[data-theme="1"] {
@@ -25,6 +26,21 @@ html[data-theme="4"] {
   --color-text: #8fc1e3;
 }
 
+html[data-theme="5"] {
+  --color-background: #feffff;
+  --color-text: #17252a;
+}
+
+html[data-theme="6"] {
+  --color-background: #17252a;
+  --color-text: #feffff;
+}
+
+html[data-theme="7"] {
+  --color-background: #000000;
+  --color-text: #00ff00;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +51,7 @@ html,
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: "Roboto Mono", monospace;
+  font-family: var(--font-family);
   min-height: 100%;
 }
 
