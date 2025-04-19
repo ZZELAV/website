@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var username = localStorage.getItem("username") || "guest";
 
+  const commandHistory = [];
+  let historyIndex = 0;
+
   loadSavedTheme();
   updateTimeDisplay();
 
@@ -24,12 +27,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  inputField.addEventListener("keypress", function (event) {
+  inputField.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      const input = event.target.value;
+      const input = event.target.value.trim();
+
+      if (input !== "") {
+        if (
+          commandHistory.length === 0 ||
+          commandHistory[commandHistory.length - 1] !== input
+        ) {
+          commandHistory.push(input);
+          if (commandHistory.length > 50) {
+            commandHistory.shift();
+          }
+          localStorage.setItem(
+            "commandHistory",
+            JSON.stringify(commandHistory)
+          );
+        }
+        historyIndex = commandHistory.length;
+      }
+
       proccessCommand(input);
       event.target.value = "";
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+
+      if (historyIndex > 0) {
+        historyIndex--;
+        inputField.value = commandHistory[historyIndex];
+
+        setTimeout(() => {
+          inputField.selectionStart = inputField.selectionEnd =
+            inputField.value.length;
+        }, 0);
+      }
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+
+      if (historyIndex < commandHistory.length - 1) {
+        historyIndex++;
+        inputField.value = commandHistory[historyIndex];
+      } else if (historyIndex === commandHistory.length - 1) {
+        historyIndex = commandHistory.length;
+        inputField.value = "";
+      }
     }
   });
 
