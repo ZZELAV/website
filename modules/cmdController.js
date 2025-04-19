@@ -5,6 +5,7 @@ import {
   outputGenerator,
   displayCommandInOutput,
   clearOutput,
+  showEmpty,
 } from "./output.js";
 import { extractTimeFromPrompt } from "./time.js";
 import { changeUser, logout } from "./user.js";
@@ -43,8 +44,7 @@ export function processCommand(command) {
   // standard commands
   switch (mainCommand) {
     case "":
-      const { outputField } = window.shellState;
-      outputField.innerHTML += `<p></p>`;
+      showEmpty();
       break;
 
     case "about":

@@ -22,6 +22,15 @@ export function clearOutput() {
 }
 
 /**
+ * show empty line in output
+ */
+export function showEmpty() {
+  const { outputField } = window.shellState;
+  outputField.innerHTML += `<p></p>`;
+  scrollToBottom();
+}
+
+/**
  * show the entered command in the output
  * @param { string } command - the entered command
  * @param { string } currentTime - the current time
