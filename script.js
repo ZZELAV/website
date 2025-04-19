@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const commandHistory = [];
   let historyIndex = 0;
 
+  const availableCommands = [
+    "about",
+    "clear",
+    "help",
+    "projects",
+    "repo",
+    "socials",
+    "whois",
+    "user",
+    "logout",
+    "theme",
+  ];
+
+  let autocompleteOptions = [];
+  let autocompleteIndex = -1;
+  let originalInput = "";
+
   loadSavedTheme();
   updateTimeDisplay();
 
@@ -32,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       const input = event.target.value.trim();
 
+      resetAutocomplete();
+
       if (input !== "") {
         if (
           commandHistory.length === 0 ||
@@ -50,27 +69,114 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
 
-      if (historyIndex > 0) {
-        historyIndex--;
-        inputField.value = commandHistory[historyIndex];
+      if (autocompleteOptions.length > 0) {
+        navigateAutocomplete(-1);
+      } else {
+        if (historyIndex > 0) {
+          historyIndex--;
+          inputField.value = commandHistory[historyIndex];
 
-        setTimeout(() => {
-          inputField.selectionStart = inputField.selectionEnd =
-            inputField.value.length;
-        }, 0);
+          setTimeout(() => {
+            inputField.selectionStart = inputField.selectionEnd =
+              inputField.value.length;
+          }, 0);
+        }
       }
+
+      // if (historyIndex > 0) {
+      //   historyIndex--;
+      //   inputField.value = commandHistory[historyIndex];
+
+      //   setTimeout(() => {
+      //     inputField.selectionStart = inputField.selectionEnd =
+      //       inputField.value.length;
+      //   }, 0);
+      // }
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
 
-      if (historyIndex < commandHistory.length - 1) {
-        historyIndex++;
-        inputField.value = commandHistory[historyIndex];
-      } else if (historyIndex === commandHistory.length - 1) {
-        historyIndex = commandHistory.length;
-        inputField.value = "";
+      if (autocompleteOptions.length > 0) {
+        navigateAutocomplete(1);
+      } else {
+        if (historyIndex < commandHistory.length - 1) {
+          historyIndex++;
+          inputField.value = commandHistory[historyIndex];
+        } else if (historyIndex === commandHistory.length - 1) {
+          historyIndex = commandHistory.length;
+          inputField.value = "";
+        }
       }
+
+      // if (historyIndex < commandHistory.length - 1) {
+      //   historyIndex++;
+      //   inputField.value = commandHistory[historyIndex];
+      // } else if (historyIndex === commandHistory.length - 1) {
+      //   historyIndex = commandHistory.length;
+      //   inputField.value = "";
+      // }
+    } else if (event.key === "Tab") {
+      event.preventDefault();
+      const input = event.target.value.trim();
+
+      if (autocompleteOptions.length > 0) {
+        if (autocompleteIndex === -1) {
+          autocompleteIndex = 0;
+          inputField.value = autocompleteOptions[autocompleteIndex];
+        } else {
+          autocompleteIndex =
+            (autocompleteIndex + 1) % autocompleteOptions.length;
+          inputField.value = autocompleteOptions[autocompleteIndex];
+        }
+      } else if (input) {
+        startAutocomplete(input);
+      }
+    } else {
+      resetAutocomplete();
     }
   });
+
+  function startAutocomplete(input) {
+    originalInput = input;
+
+    autocompleteOptions = availableCommands.filter((cmd) =>
+      cmd.startsWith(input.toLowerCase())
+    );
+
+    if (autocompleteOptions.length > 0) {
+      autocompleteIndex = 0;
+      inputField.value = autocompleteOptions[autocompleteIndex];
+
+      setTimeout(() => {
+        inputField.selectionStart = inputField.selectionEnd =
+          inputField.value.length;
+      }, 0);
+    }
+  }
+
+  function navigateAutocomplete(direction) {
+    if (autocompleteOptions.length === 0) return;
+
+    autocompleteIndex += direction;
+
+    if (autocompleteIndex < 0) {
+      autocompleteIndex = autocompleteOptions.length - 1;
+    } else if (autocompleteIndex >= autocompleteOptions.length) {
+      autocompleteIndex = 0;
+    }
+
+    inputField.value = autocompleteOptions[autocompleteIndex];
+
+    setTimeout(() => {
+      inputField.selectionStart = inputField.selectionEnd =
+        inputField.value.length;
+    }, 0);
+  }
+
+  function resetAutocomplete() {
+    autocompleteOptions = [];
+    autocompleteIndex = -1;
+    originalInput = "";
+  }
 
   function updateTimeDisplay() {
     const now = new Date();
