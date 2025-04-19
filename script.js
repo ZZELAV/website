@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
 
-  var username = localStorage.getItem("username") || "guest";
+  let username = localStorage.getItem("username") || "guest";
 
   const commandHistory = [];
   let historyIndex = 0;
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   outputField.innerHTML =
     `<p class="output-history">valentino panico | shell<br>` +
-    `version 2.0<br><br>` +
+    `version 2.1<br><br>` +
     `type 'help' for a list of all commands</p>`;
 
   htmlElement.addEventListener("click", function () {
@@ -41,15 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (commandHistory.length > 50) {
             commandHistory.shift();
           }
-          localStorage.setItem(
-            "commandHistory",
-            JSON.stringify(commandHistory)
-          );
         }
         historyIndex = commandHistory.length;
       }
 
-      proccessCommand(input);
+      processCommand(input);
       event.target.value = "";
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -85,23 +81,27 @@ document.addEventListener("DOMContentLoaded", function () {
     inputPrompt.innerHTML = `${username} [${timeString}]`;
   }
 
-  function proccessCommand(command) {
-    const currentTime = inputPrompt.innerHTML.match(/\[(.*?)\]/)[1];
+  function processCommand(command) {
+    let timeMatch = inputPrompt.innerHTML.match(/\[(.*?)\]/);
+    const currentTime = timeMatch ? timeMatch[1] : "00:00:00";
+
     outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] &#10148; ${command}</span>`;
 
-    if (command.toLowerCase().startsWith("user ")) {
-      const newUsername = command.split(" ")[1];
-      changeUser(newUsername);
+    const commandParts = command.toLowerCase().split(" ");
+    const mainCommand = commandParts[0];
+    const parameter = commandParts.slice(1).join(" ");
+
+    if (mainCommand === "user" && parameter) {
+      changeUser(parameter);
       return;
     }
 
-    if (command.toLowerCase().startsWith("theme ")) {
-      const themeNumber = command.split(" ")[1];
-      switchTheme(themeNumber);
+    if (mainCommand === "theme" && parameter) {
+      switchTheme(parameter);
       return;
     }
 
-    switch (command.toLowerCase()) {
+    switch (mainCommand) {
       case "":
         outputField.innerHTML += `<p></p>`;
         break;
@@ -215,13 +215,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function switchTheme(themeNumber) {
-    if (themeNumber > 0 && themeNumber < 8) {
+    const themeNum = parseInt(themeNumber, 10);
+
+    if (themeNum > 0 && themeNum < 8) {
       document.documentElement.removeAttribute("data-theme");
-      document.documentElement.setAttribute("data-theme", themeNumber);
+      document.documentElement.setAttribute("data-theme", themeNum.toString());
 
-      outputGenerator(`theme switched to ${themeNumber}`);
+      outputGenerator(`theme switched to ${themeNum}`);
 
-      saveTheme(themeNumber);
+      saveTheme(themeNum);
 
       window.scrollTo(0, htmlElement.scrollHeight);
     } else {
@@ -230,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function saveTheme(themeNumber) {
-    localStorage.setItem("selectedTheme", themeNumber);
+    localStorage.setItem("selectedTheme", themeNumber.toString());
   }
 
   function loadSavedTheme() {
