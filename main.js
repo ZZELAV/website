@@ -3,7 +3,7 @@
 
 import { setupAutocomplete } from "./modules/autocomplete.js";
 import { setupCmdController } from "./modules/cmdController.js";
-import { loadSavedTheme, saveTheme, switchTheme } from "./modules/theme.js";
+import { loadSavedTheme } from "./modules/theme.js";
 import { updateTimeDisplay } from "./modules/time.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputPrompt = document.getElementById("input-prompt");
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
+  const version = "2.3";
 
   // state variables
   window.shellState = {
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // welcome message => will be shown on startup/reload
     outputField.innerHTML =
       `<p class="output-history">valentino panico | shell<br>` +
-      `version 2.2<br><br>` +
+      `version ${version}<br><br>` +
       `type 'help' for a list of all commands</p>`;
 
     // setup event listener

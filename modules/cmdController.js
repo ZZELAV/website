@@ -9,7 +9,22 @@ import {
 } from "./output.js";
 import { extractTimeFromPrompt } from "./time.js";
 import { changeUser, logout } from "./user.js";
-import { switchTheme } from "./theme.js";
+import { switchTheme, showThemes } from "./theme.js";
+
+// available commands for autocomplete
+export const availableCommands = [
+  "about",
+  "clear",
+  "help",
+  "logout",
+  "projects",
+  "repo",
+  "socials",
+  "theme",
+  "themes",
+  "user",
+  "whois",
+];
 
 /**
  * setup the command controller
@@ -59,6 +74,10 @@ export function processCommand(command) {
       showHelp();
       break;
 
+    case "logout":
+      logout();
+      break;
+
     case "projects":
       showProjects();
       break;
@@ -71,12 +90,12 @@ export function processCommand(command) {
       showSocials();
       break;
 
-    case "whois":
-      showWhois();
+    case "themes":
+      showThemes();
       break;
 
-    case "logout":
-      logout();
+    case "whois":
+      showWhois();
       break;
 
     default:
@@ -92,20 +111,20 @@ export function processCommand(command) {
 function showAbout() {
   outputGenerator(
     `# about me<br>` +
-      `lastname         panico<br>` +
-      `prename          valentino<br>` +
-      `birthday         28th of august 2004<br>` +
-      `residence        kreuzlingen, ch-8280 switzerland<br>` +
-      `job              computer scientist<br>` +
-      `e-mail           <a href="mailto:valentino.panico@icloud.com">valentino.panico@icloud.com</a><br><br>` +
+      `lastname             panico<br>` +
+      `prename              valentino<br>` +
+      `birthday             28th of august 2004<br>` +
+      `residence            kreuzlingen, ch-8280 switzerland<br>` +
+      `job                  computer scientist<br>` +
+      `e-mail               <a href="mailto:valentino.panico@icloud.com">valentino.panico@icloud.com</a><br><br>` +
       `# job experience<br>` +
-      `2020 - now       computer scientist - lenze swiss ag, romanshorn<br><br>` +
+      `2020 - now           computer scientist - lenze swiss ag, romanshorn<br><br>` +
       `# education<br>` +
-      `2020 - 2024      apprenticeship (computer scientist efz) - bzt, frauenfeld<br>` +
-      `2017 - 2020      secondary school (level e) - sbw talent campus bodensee, kreuzlingen<br>` +
-      `2011 - 2017      primary school - kreuzlingen<br><br>` +
+      `2020 - 2024          apprenticeship (computer scientist efz) - bzt, frauenfeld<br>` +
+      `2017 - 2020          secondary school (level e) - sbw talent campus bodensee, kreuzlingen<br>` +
+      `2011 - 2017          primary school - kreuzlingen<br><br>` +
       `# others <br>` +
-      `2024 - now       military service as infantry crew member`
+      `2024 - now           military service as infantry crew member`
   );
 }
 
@@ -114,16 +133,17 @@ function showAbout() {
  */
 function showHelp() {
   outputGenerator(
-    `about          about me<br>` +
-      `clear          clear the terminal<br>` +
-      `help           show this help page<br>` +
-      `projects       list my projects<br>` +
-      `repo           link to the github repository<br>` +
-      `socials        show links to socials<br>` +
-      `whois          who am i<br><br>` +
-      `user NAME      change user to NAME<br>` +
-      `logout         logout current user<br>` +
-      `theme #        switch theme to #`
+    `about                about me<br>` +
+      `clear                clear the terminal<br>` +
+      `help                 show this help page<br>` +
+      `logout               logout current user<br>` +
+      `projects             list my projects<br>` +
+      `repo                 link to the github repository<br>` +
+      `socials              show links to socials<br>` +
+      `theme #              switch theme to #<br>` +
+      `themes               show the available themes<br>` +
+      `user NAME            change user to NAME<br>` +
+      `whois                who am i`
   );
 }
 
@@ -132,10 +152,10 @@ function showHelp() {
  */
 function showProjects() {
   outputGenerator(
-    `<a href="https://github.com/ZZELAV/lernjournal" target="_blank">lernjournal</a>              documentation of different tasks durring my apprenticeship<br>` +
-      `<a href="https://github.com/ZZELAV/docusaurus-template" target="_blank">docusaurus-template</a>      customized docusaurus<br>` +
-      `<a href="https://github.com/ZZELAV/ventoy-usb" target="_blank">ventoy-usb</a>               template for a ventoy boot usb-stick<br>` +
-      `<a href="https://github.com/ZZELAV/DogeRadio" target="_blank">dogeradio</a>                a small application to play different radio stations`
+    `<a href="https://github.com/ZZELAV/lernjournal" target="_blank">lernjournal</a>                  documentation of different tasks durring my apprenticeship<br>` +
+      `<a href="https://github.com/ZZELAV/docusaurus-template" target="_blank">docusaurus-template</a>          customized docusaurus<br>` +
+      `<a href="https://github.com/ZZELAV/ventoy-usb" target="_blank">ventoy-usb</a>                   template for a ventoy boot usb-stick<br>` +
+      `<a href="https://github.com/ZZELAV/DogeRadio" target="_blank">dogeradio</a>                    a small application to play different radio stations`
   );
 }
 
@@ -166,7 +186,7 @@ function showWhois() {
   outputGenerator(
     `hi 👋. i'm valentino panico.<br>` +
       `i was born on the 28th of august in 2004.<br>` +
-      `i live in kreuzlingen 🇨🇭 and i'm doing an apprenticeship<br>` +
+      `i live in kreuzlingen 🇨🇭 and i've done an apprenticeship<br>` +
       `as a computer scientist 🖥️ at lenze swiss ag in romanshorn 🇨🇭.<br>` +
       `currently i'm doing my military service as infantry crew member 🛡️.<br><br>` +
       `in my free time i like to work on my homeserver.<br>` +

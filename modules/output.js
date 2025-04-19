@@ -37,5 +37,5 @@ export function showEmpty() {
  */
 export function displayCommandInOutput(command, currentTime) {
   const { outputField, username } = window.shellState;
-  outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] &#10148; ${command}</span>`;
+  outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] ~ % ${command}</span>`;
 }

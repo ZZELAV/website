@@ -46,3 +46,21 @@ export function loadSavedTheme() {
     switchTheme(savedTheme);
   }
 }
+
+/**
+ * show available themes
+ */
+export function showThemes() {
+  const savedTheme = localStorage.getItem("selectedTheme");
+
+  outputGenerator(
+    `1                    default<br>` +
+      `2                    classic green<br>` +
+      `3                    terminal pro<br>` +
+      `4                    dark blue<br>` +
+      `5                    light<br>` +
+      `6                    purple<br>` +
+      `7                    atom one dark<br><br>` +
+      `currently selected:  ${savedTheme}`
+  );
+}

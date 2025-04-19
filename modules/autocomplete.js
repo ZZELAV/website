@@ -3,20 +3,7 @@
 
 import { processCommand } from "./cmdController.js";
 import { setCursorToEnd } from "./utils.js";
-
-// available commands for autocomplete
-const availableCommands = [
-  "about",
-  "clear",
-  "help",
-  "projects",
-  "repo",
-  "socials",
-  "whois",
-  "user",
-  "logout",
-  "theme",
-];
+import { availableCommands } from "./cmdController.js";
 
 // autocomplete state
 let autocompleteOptions = [];
