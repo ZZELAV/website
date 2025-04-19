@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputPrompt = document.getElementById("input-prompt");
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
-  const version = "2.3";
+  const version = "2.3.1";
 
   // state variables
   window.shellState = {
@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     outputField.innerHTML =
       `<p class="output-history">valentino panico | shell<br>` +
       `version ${version}<br><br>` +
-      `type 'help' for a list of all commands</p>`;
+      `type 'commands' for a list of all commands<br>` +
+      `type 'help CMD' to learn about a command</p>`;
 
     // setup event listener
     setupEventListeners();

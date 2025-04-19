@@ -15,6 +15,7 @@ import { switchTheme, showThemes } from "./theme.js";
 export const availableCommands = [
   "about",
   "clear",
+  "commands",
   "help",
   "logout",
   "projects",
@@ -46,13 +47,18 @@ export function processCommand(command) {
   const parameter = commandParts.slice(1).join(" ");
 
   // special commands with parameters
-  if (mainCommand === "user" && parameter) {
-    changeUser(parameter);
+  if (mainCommand === "help" && parameter) {
+    showHelp(parameter);
     return;
   }
 
   if (mainCommand === "theme" && parameter) {
     switchTheme(parameter);
+    return;
+  }
+
+  if (mainCommand === "user" && parameter) {
+    changeUser(parameter);
     return;
   }
 
@@ -68,6 +74,10 @@ export function processCommand(command) {
 
     case "clear":
       clearOutput();
+      break;
+
+    case "commands":
+      showCommands();
       break;
 
     case "help":
@@ -100,7 +110,9 @@ export function processCommand(command) {
 
     default:
       outputGenerator(
-        `unknown command<br>` + `type 'help' for a list of all commands`
+        `unknown command<br>` +
+          `type 'commands' for a list of all commands<br>` +
+          `type 'help CMD' to learn about a command`
       );
   }
 }
@@ -129,22 +141,81 @@ function showAbout() {
 }
 
 /**
- * show the help
+ * show the list of commands
  */
-function showHelp() {
+function showCommands() {
   outputGenerator(
-    `about                about me<br>` +
-      `clear                clear the terminal<br>` +
-      `help                 show this help page<br>` +
-      `logout               logout current user<br>` +
-      `projects             list my projects<br>` +
-      `repo                 link to the github repository<br>` +
-      `socials              show links to socials<br>` +
-      `theme #              switch theme to #<br>` +
-      `themes               show the available themes<br>` +
-      `user NAME            change user to NAME<br>` +
-      `whois                who am i`
+    `about                help CMD              repo                  themes<br>` +
+      `clear                logout                socials               user NAME<br>` +
+      `commands             projects              theme #               whois`
   );
+}
+
+/**
+ * show the help page to a command
+ * @param { string } command - the command to show the help page
+ */
+function showHelp(command) {
+  if (command === undefined) {
+    command = "";
+  }
+  switch (command) {
+    case "about":
+      outputGenerator(`about<br>` + `- shows the about page`);
+      break;
+
+    case "clear":
+      outputGenerator(`clear<br>` + `- clear the terminal`);
+      break;
+
+    case "commands":
+      outputGenerator(`commands<br>` + `- shows a list of available commands`);
+      break;
+
+    case "help":
+      outputGenerator(`help<br>` + `- shows this page to describe a command`);
+      break;
+
+    case "logout":
+      outputGenerator(
+        `logout<br>` + `- logout the current user and reset settings`
+      );
+      break;
+
+    case "projects":
+      outputGenerator(`projects<br>` + `- list my projects`);
+      break;
+
+    case "repo":
+      outputGenerator(`repo<br>` + `- link to the github repository`);
+      break;
+
+    case "socials":
+      outputGenerator(`socials<br>` + `- show links to my socials`);
+      break;
+
+    case "theme":
+      outputGenerator(`theme<br>` + `- switch to an other theme`);
+      break;
+
+    case "themes":
+      outputGenerator(`themes<br>` + `- show the available themes`);
+      break;
+
+    case "user":
+      outputGenerator(`user<br>` + `- change user`);
+      break;
+
+    case "whois":
+      outputGenerator(`whois<br>` + `- show a text to explain who i am`);
+      break;
+
+    default:
+      outputGenerator(
+        `unknown parameter '${command}'<br>` +
+          `type a valid command to show the help page`
+      );
+  }
 }
 
 /**
