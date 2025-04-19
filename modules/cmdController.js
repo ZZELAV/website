@@ -10,6 +10,7 @@ import {
 import { extractTimeFromPrompt } from "./time.js";
 import { changeUser, logout } from "./user.js";
 import { switchTheme, showThemes } from "./theme.js";
+import { activateEasterEgg } from "./easterEgg.js";
 
 // available commands for autocomplete
 export const availableCommands = [
@@ -41,6 +42,11 @@ export function setupCmdController() {
 export function processCommand(command) {
   const currentTime = extractTimeFromPrompt();
   displayCommandInOutput(command, currentTime);
+
+  if (command === "sudo rm -rf") {
+    activateEasterEgg();
+    return;
+  }
 
   const commandParts = command.toLowerCase().split(" ");
   const mainCommand = commandParts[0];
