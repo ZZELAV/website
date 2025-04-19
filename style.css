@@ -47,6 +47,10 @@ html[data-theme="7"] {
   box-sizing: border-box;
 }
 
+html {
+  border: 0.5rem solid var(--color-text);
+}
+
 html,
 body {
   background-color: var(--color-background);

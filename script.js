@@ -7,8 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var username = localStorage.getItem("username") || "guest";
 
   loadSavedTheme();
+  updateTimeDisplay();
 
-  inputPrompt.innerHTML = username;
+  setInterval(updateTimeDisplay, 1000);
+
   outputField.innerHTML =
     `<p class="output-history">valentino panico | shell<br>` +
     `version 2.0<br><br>` +
@@ -31,8 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  function updateTimeDisplay() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const seconds = now.getSeconds().toString().padStart(2, "0");
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    inputPrompt.innerHTML = `${username} [${timeString}]`;
+  }
+
   function proccessCommand(command) {
-    outputField.innerHTML += `<span class="output-history">${username} &#10148; ${command}</span>`;
+    const currentTime = inputPrompt.innerHTML.match(/\[(.*?)\]/)[1];
+    outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] &#10148; ${command}</span>`;
 
     if (command.toLowerCase().startsWith("user ")) {
       const newUsername = command.split(" ")[1];
@@ -126,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         username = "guest";
         localStorage.removeItem("username");
-        inputPrompt.innerHTML = username;
+        updateTimeDisplay();
 
         outputGenerator(
           `user logged out<br>` + `all settings reset to default`
@@ -152,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     username = newUsername;
     localStorage.setItem("username", username);
-    inputPrompt.innerHTML = username;
+    updateTimeDisplay();
 
     outputGenerator(`user changed to ${username}`);
 
@@ -181,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadSavedTheme() {
     const savedTheme = localStorage.getItem("selectedTheme");
 
-    if (saveTheme) {
+    if (savedTheme) {
       switchTheme(savedTheme);
     }
   }
