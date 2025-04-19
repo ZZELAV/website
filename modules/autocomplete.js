@@ -21,6 +21,7 @@ const availableCommands = [
 // autocomplete state
 let autocompleteOptions = [];
 let autocompleteIndex = -1;
+let originalInput = "";
 
 /**
  * setup for autocomplete functionality
@@ -202,4 +203,5 @@ function navigateAutocomplete(direction) {
 function resetAutocomplete() {
   autocompleteOptions = [];
   autocompleteIndex = -1;
+  originalInput = "";
 }
