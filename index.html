@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>valentino panico | shell</title>
+    <title>valentino panico</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <div class="terminal-wrapper">
+    <div id="desktop-background" class="desktop-background">
+      <div id="terminal-shortcut" class="terminal-shortcut">
+        <img src="favicon.ico" alt="Terminal Icon" class="shortcut-icon" />
+        <span class="shortcut-text">shell</span>
+      </div>
+    </div>
+    <div id="terminal" class="terminal-wrapper">
       <div class="title-bar">
         <div class="traffic-lights">
-          <div class="traffic-light traffic-red"></div>
-          <div class="traffic-light traffic-yellow"></div>
-          <div class="traffic-light traffic-green"></div>
+          <div class="traffic-light traffic-red" id="close-button"></div>
+          <div class="traffic-light traffic-yellow" id="minimize-button"></div>
+          <div class="traffic-light traffic-green" id="maximize-button"></div>
         </div>
         <div class="title-text">
           <img src="favicon.ico" alt="Terminal Icon" class="title-icon" />

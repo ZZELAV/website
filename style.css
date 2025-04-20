@@ -10,9 +10,11 @@
   --titlebar-background: #2d2d2d;
   --titlebar-text: #d8d8d8;
   --titlebar-border: #444444;
-  --scrollbar-width: 0.375px;
+  --scrollbar-width: 0.375rem;
   --scrollbar-track: rgba(0, 0, 0, 0.1);
   --scrollbar-thumb: rgba(128, 128, 128, 0.5);
+  --desktop-background: #1e3c72;
+  --desktop-gradient: linear-gradient(to right, #2a5298, #1e3c72);
 }
 
 /* default */
@@ -65,11 +67,11 @@ html[data-theme="7"] {
 
 html,
 body {
-  background-color: var(--titlebar-background);
   color: var(--color-text);
   font-family: var(--font-family);
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 a {
@@ -79,9 +81,58 @@ a {
   cursor: pointer;
 }
 
-.terminal-wrapper {
-  position: relative;
+.desktop-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  background: var(--desktop-gradient);
+  z-index: 0;
+  display: flex;
+  padding: 1.25rem;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.terminal-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 5rem;
+  padding: 0.625rem;
+  border-radius: 0.3rem;
+  transition: background-color 0.2s;
+  z-index: 1;
+}
+
+.terminal-shortcut:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.shortcut-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.3rem;
+  object-fit: contain;
+}
+
+.shortcut-text {
+  color: white;
+  font-size: 0.75rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 80%;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -89,10 +140,19 @@ a {
   border-left: 1px solid var(--titlebar-border);
   border-right: 1px solid var(--titlebar-border);
   border-bottom: 1px solid var(--titlebar-border);
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 0.5rem;
   margin: 0 auto;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 10;
+  background-color: var(--color-background);
+}
+
+.terminal-hidden {
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .title-bar {
@@ -104,12 +164,14 @@ a {
   border-right: 1px solid var(--titlebar-border);
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  height: 28px;
-  min-height: 28px;
+  height: 1.75rem;
+  min-height: 1.75rem;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 0.625rem;
   position: relative;
+  -webkit-app-region: drag;
+  user-select: none;
 }
 
 .title-text {
@@ -134,6 +196,8 @@ a {
   html,
   body {
     background-color: #e0e0e0;
+    --desktop-background: #f0f0f0;
+    --desktop-gradient: linear-gradient(to right, #e0e0e0, #f0f0f0);
   }
   :root {
     --titlebar-background: #e0e0e0;
@@ -141,6 +205,10 @@ a {
     --titlebar-border: #c0c0c0;
     --scrollbar-track: rgba(0, 0, 0, 0.05);
     --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  }
+  .shortcut-text {
+    color: #333333;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -162,12 +230,19 @@ a {
   display: flex;
   gap: 0.5rem;
   z-index: 1;
+  -webkit-app-region: no-drag;
 }
 
 .traffic-light {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.traffic-light:hover {
+  opacity: 0.8;
 }
 
 .traffic-red {

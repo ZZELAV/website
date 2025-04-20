@@ -6,6 +6,7 @@ import { setupCmdController } from "./modules/cmdController.js";
 import { loadSavedTheme } from "./modules/theme.js";
 import { updateTimeDisplay } from "./modules/time.js";
 import { scrollToBottom, observeOutputChanges } from "./modules/utils.js";
+import { setupTrafficLights } from "./modules/trafficLights.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -52,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // init autocomplete
     setupAutocomplete();
 
+    // init traffic lights functionality
+    setupTrafficLights();
+
     // set up output observer for automatic scrolling
     observeOutputChanges(outputField);
 
@@ -67,5 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
         inputField.focus();
       }
     });
+
+    // focus input when clicking in the terminal content area
+    document
+      .querySelector(".content-area")
+      .addEventListener("click", function (e) {
+        // only focus if we're not selecting text
+        if (window.getSelection().toString() === "") {
+          inputField.focus();
+        }
+      });
   }
 });
