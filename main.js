@@ -7,6 +7,7 @@ import { loadSavedTheme } from "./modules/theme.js";
 import { updateTimeDisplay } from "./modules/time.js";
 import { scrollToBottom, observeOutputChanges } from "./modules/utils.js";
 import { setupTrafficLights } from "./modules/trafficLights.js";
+import { setRandomBackground } from "./modules/background.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputPrompt = document.getElementById("input-prompt");
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
+  const desktopBackground = document.getElementById("desktop-background");
   const version = "2.3.1";
 
   // state variables
@@ -29,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // init shell
   initShell();
+
+  // load random background image
+  setRandomBackground(desktopBackground);
 
   function initShell() {
     loadSavedTheme();
