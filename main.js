@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
   const desktopBackground = document.getElementById("desktop-background");
-  const version = "2.4";
+  const version = "2.4.1";
   const hostname = "valentino-panico.ch";
 
   // state variables
