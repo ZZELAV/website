@@ -9,6 +9,8 @@ import { setupTrafficLights } from "./modules/trafficLights.js";
 import { setRandomBackground } from "./modules/background.js";
 import { showBanner, updatePromptDisplay } from "./modules/output.js";
 import { setupStatusbar } from "./modules/statusbar.js";
+import { checkScreenSize } from "./modules/warning.js";
+import "./modules/debug.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -44,7 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
   initShell();
 
   function initShell() {
+    // check screen size and show warning if needed
+    checkScreenSize();
+
+    // load the saved theme from the localStorage
     loadSavedTheme();
+
+    // load the prompt
     updatePromptDisplay();
 
     // initialize the statusbar
