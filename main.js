@@ -5,6 +5,7 @@ import { setupAutocomplete } from "./modules/autocomplete.js";
 import { setupCmdController } from "./modules/cmdController.js";
 import { loadSavedTheme } from "./modules/theme.js";
 import { updateTimeDisplay } from "./modules/time.js";
+import { scrollToBottom, observeOutputChanges } from "./modules/utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -50,6 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // init autocomplete
     setupAutocomplete();
+
+    // set up output observer for automatic scrolling
+    observeOutputChanges(outputField);
+
+    // initial scroll to bottom
+    scrollToBottom(outputField);
   }
 
   function setupEventListeners() {

@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+:root {
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --font-family: "Roboto Mono", monospace;
+}
+
+/* default */
+html[data-theme="1"] {
+  --color-background: #000000;
+  --color-text: #ffffff;
+}
+
+/* classic green */
+html[data-theme="2"] {
+  --color-background: #1d1d1d;
+  --color-text: #00ff41;
+}
+
+/* terminal pro */
+html[data-theme="3"] {
+  --color-background: #0c2433;
+  --color-text: #dcdcdc;
+}
+
+/* dark blue */
+html[data-theme="4"] {
+  --color-background: #090b17;
+  --color-text: #a9b2c3;
+}
+
+/* light */
+html[data-theme="5"] {
+  --color-background: #ffffff;
+  --color-text: #000000;
+}
+
+/* purple */
+html[data-theme="6"] {
+  --color-background: #422541;
+  --color-text: #ccbbee;
+}
+
+/* atom one dark */
+html[data-theme="7"] {
+  --color-background: #282c34;
+  --color-text: #abb2bf;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  border: 0.5rem solid var(--color-text);
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  min-height: 100%;
+}
+
+a {
+  all: unset;
+  color: var(--color-text);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terminal-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.8rem;
+}
+
+.output-wrapper {
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: 10%;
+}
+
+p.output-history {
+  padding-bottom: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.input-prompt {
+  margin-right: 0.6rem;
+}
+
+.input-field {
+  all: unset;
+  flex-grow: 1;
+  border: none;
+  background: none;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+::selection {
+  color: var(--color-background);
+  background: var(--color-text);
+}
+
+::-moz-selection {
+  color: var(--color-background);
+  background: var(--color-text);
+}

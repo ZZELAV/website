@@ -9,17 +9,30 @@
   </head>
   <body>
     <div class="terminal-wrapper">
-      <div id="output-wrapper" class="output-wrapper"></div>
-      <div class="input-wrapper">
-        <span id="input-prompt" class="input-prompt"></span> ~ %&nbsp;
-        <input
-          type="text"
-          name="input-field"
-          id="input-field"
-          class="input-field"
-          autocomplete="off"
-          autofocus
-        />
+      <div class="title-bar">
+        <div class="traffic-lights">
+          <div class="traffic-light traffic-red"></div>
+          <div class="traffic-light traffic-yellow"></div>
+          <div class="traffic-light traffic-green"></div>
+        </div>
+        <div class="title-text">
+          <img src="favicon.ico" alt="Terminal Icon" class="title-icon" />
+          valentino panico | shell
+        </div>
+      </div>
+      <div class="content-area">
+        <div id="output-wrapper" class="output-wrapper"></div>
+        <div class="input-wrapper">
+          <span id="input-prompt" class="input-prompt"></span> ~ %&nbsp;
+          <input
+            type="text"
+            name="input-field"
+            id="input-field"
+            class="input-field"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
       </div>
     </div>
     <script type="module" src="main.js"></script>

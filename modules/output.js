@@ -10,7 +10,7 @@ import { scrollToBottom } from "./utils.js";
 export function outputGenerator(output) {
   const { outputField } = window.shellState;
   outputField.innerHTML += `<p class="output-history">${output}</p>`;
-  scrollToBottom();
+  scrollToBottom(outputField);
 }
 
 /**
@@ -27,7 +27,7 @@ export function clearOutput() {
 export function showEmpty() {
   const { outputField } = window.shellState;
   outputField.innerHTML += `<p></p>`;
-  scrollToBottom();
+  scrollToBottom(outputField);
 }
 
 /**
@@ -38,4 +38,5 @@ export function showEmpty() {
 export function displayCommandInOutput(command, currentTime) {
   const { outputField, username } = window.shellState;
   outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] ~ % ${command}</span>`;
+  scrollToBottom(outputField);
 }

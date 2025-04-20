@@ -11,6 +11,7 @@ export function activateEasterEgg() {
   document.body.innerHTML = "";
 
   // body styling
+  document.body.style.backgroundColor = "#000000";
   document.body.style.margin = "0";
   document.body.style.padding = "0";
   document.body.style.width = "100%";
@@ -20,9 +21,6 @@ export function activateEasterEgg() {
   document.body.style.flexDirection = "column";
   document.body.style.justifyContent = "center";
   document.body.style.alignItems = "center";
-
-  // blackout background and red border
-  htmlElement.style.backgroundColor = "#000000";
   htmlElement.style.border = "0.5rem solid #ff0000";
 
   showHackScreen("../static/img/skull_1.png", "../static/img/skull_2.png");
