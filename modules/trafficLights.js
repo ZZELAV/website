@@ -82,7 +82,7 @@ function maximizeTerminal(terminal) {
   terminal.style.left = "0";
   terminal.style.width = "100%";
   terminal.style.height = "100%";
-  terminal.style.borderRadius = "0";
+  terminal.style.borderRadius = "0.5rem";
   terminal.style.transform = "none";
 
   // keep track of the previous size and position
