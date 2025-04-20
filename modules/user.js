@@ -1,8 +1,7 @@
 // user.js
 // manage the user functionality
 
-import { outputGenerator } from "./output.js";
-import { updateTimeDisplay } from "./time.js";
+import { outputGenerator, updatePromptDisplay } from "./output.js";
 import { scrollToBottom } from "./utils.js";
 
 /**
@@ -17,7 +16,7 @@ export function changeUser(newUsername) {
 
   window.shellState.username = newUsername;
   localStorage.setItem("username", newUsername);
-  updateTimeDisplay();
+  updatePromptDisplay();
 
   outputGenerator(`user changed to ${newUsername}`);
   scrollToBottom();
@@ -37,7 +36,7 @@ export function logout() {
 
   window.shellState.username = "guest";
   localStorage.removeItem("username");
-  updateTimeDisplay();
+  updatePromptDisplay();
 
   outputGenerator(`user logged out<br>` + `all settings reset to default`);
 }

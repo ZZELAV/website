@@ -4,11 +4,11 @@
 import { setupAutocomplete } from "./modules/autocomplete.js";
 import { setupCmdController } from "./modules/cmdController.js";
 import { loadSavedTheme } from "./modules/theme.js";
-import { updateTimeDisplay } from "./modules/time.js";
 import { scrollToBottom, observeOutputChanges } from "./modules/utils.js";
 import { setupTrafficLights } from "./modules/trafficLights.js";
 import { setRandomBackground } from "./modules/background.js";
-import { showBanner } from "./modules/output.js";
+import { showBanner, updatePromptDisplay } from "./modules/output.js";
+import { setupStatusbar } from "./modules/statusbar.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const outputField = document.getElementById("output-wrapper");
   const desktopBackground = document.getElementById("desktop-background");
   const version = "2.4";
+  const hostname = "valentino-panico.ch";
 
   // state variables
   window.shellState = {
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     outputField,
     htmlElement,
     version,
+    hostname,
     terminalState: {
       isMinimized: false,
       content: "",
@@ -43,10 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function initShell() {
     loadSavedTheme();
-    updateTimeDisplay();
+    updatePromptDisplay();
 
-    // timer for refreshing the time every second
-    setInterval(updateTimeDisplay, 1000);
+    // initialize the statusbar
+    setupStatusbar();
 
     // welcome message => will be shown on startup/reload
     showBanner();

@@ -97,12 +97,16 @@ function maximizeTerminal(terminal) {
   // apply transition for smooth animation
   terminal.style.transition = "all 0.3s ease";
 
+  // get statusbar height to avoid overlap
+  const statusbar = document.querySelector(".status-bar");
+  const statusbarHeight = statusbar ? statusbar.offsetHeight : 0;
+
   // maximize with slight delay to ensure smooth transition
   requestAnimationFrame(() => {
-    terminal.style.top = "0";
+    terminal.style.top = `${statusbarHeight}px`;
     terminal.style.left = "0";
     terminal.style.width = "100%";
-    terminal.style.height = "100%";
+    terminal.style.height = `calc(100% - ${statusbarHeight}px)`;
     terminal.style.borderRadius = "0.5rem";
     terminal.style.transform = "none";
   });

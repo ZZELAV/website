@@ -2,21 +2,6 @@
 // manage the time output in the prompt
 
 /**
- * reload the time format in the input prompt
- */
-export function updateTimeDisplay() {
-  const { username, inputPrompt } = window.shellState;
-
-  const now = new Date();
-  const hours = now.getHours().toString().padStart(2, "0");
-  const minutes = now.getMinutes().toString().padStart(2, "0");
-  const seconds = now.getSeconds().toString().padStart(2, "0");
-  const timeString = `${hours}:${minutes}:${seconds}`;
-
-  inputPrompt.innerHTML = `${username} [${timeString}]`;
-}
-
-/**
  * return the current formatted time
  */
 export function getCurrentTimeString() {
@@ -28,10 +13,45 @@ export function getCurrentTimeString() {
 }
 
 /**
- * extract the time from the prompt
+ * get formatted current date
+ * @returns { string } formatted date string
+ */
+export function getCurrentDateString() {
+  const now = new Date();
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const dayName = days[now.getDay()];
+  const day = now.getDate();
+  const month = months[now.getMonth()];
+  const year = now.getFullYear();
+  return `${dayName}, ${day} ${month} ${year}`;
+}
+
+/**
+ * extract the time from the statusbar
  */
 export function extractTimeFromPrompt() {
-  const { inputPrompt } = window.shellState;
-  const timeMatch = inputPrompt.innerHTML.match(/\[(.*?)\]/);
-  return timeMatch ? timeMatch[1] : "00:00:00";
+  const timeElement = document.getElementById("status-time");
+  return timeElement ? timeElement.textContent : "00:00:00";
 }

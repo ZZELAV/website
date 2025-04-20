@@ -36,8 +36,8 @@ export function showEmpty() {
  * @param { string } currentTime - the current time
  */
 export function displayCommandInOutput(command, currentTime) {
-  const { outputField, username } = window.shellState;
-  outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] ~ % ${command}</span>`;
+  const { outputField, username, hostname } = window.shellState;
+  outputField.innerHTML += `<span class="output-history">${username}@${hostname} ~ % ${command}</span>`;
   scrollToBottom(outputField);
 }
 
@@ -48,7 +48,18 @@ export function showBanner() {
   const { outputField, version } = window.shellState;
   outputField.innerHTML =
     `<p class="output-history">valentino panico | shell<br>` +
+    `copyright (c) valentino panico<br>` +
+    `all rights reserved<br>` +
     `version ${version}<br><br>` +
     `type 'commands' for a list of all commands<br>` +
     `type 'help CMD' to learn about a command</p>`;
+}
+
+/**
+ * the prompt format
+ */
+export function updatePromptDisplay() {
+  const { username, hostname, inputPrompt } = window.shellState;
+
+  inputPrompt.innerHTML = `${username}@${hostname}`;
 }
