@@ -148,15 +148,16 @@ a {
   margin: 0 auto;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, opacity 0.3s;
   z-index: 10;
   background-color: var(--color-background);
+  will-change: transform, width, height, top, left;
 }
 
 .terminal-hidden {
   transform: translate(-50%, -50%) scale(0.95);
   opacity: 0;
   pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .title-bar {

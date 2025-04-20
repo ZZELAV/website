@@ -40,3 +40,15 @@ export function displayCommandInOutput(command, currentTime) {
   outputField.innerHTML += `<span class="output-history">${username} [${currentTime}] ~ % ${command}</span>`;
   scrollToBottom(outputField);
 }
+
+/**
+ * show banner on terminal opening
+ */
+export function showBanner() {
+  const { outputField, version } = window.shellState;
+  outputField.innerHTML =
+    `<p class="output-history">valentino panico | shell<br>` +
+    `version ${version}<br><br>` +
+    `type 'commands' for a list of all commands<br>` +
+    `type 'help CMD' to learn about a command</p>`;
+}

@@ -8,6 +8,7 @@ import { updateTimeDisplay } from "./modules/time.js";
 import { scrollToBottom, observeOutputChanges } from "./modules/utils.js";
 import { setupTrafficLights } from "./modules/trafficLights.js";
 import { setRandomBackground } from "./modules/background.js";
+import { showBanner } from "./modules/output.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // dom elements
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
   const desktopBackground = document.getElementById("desktop-background");
-  const version = "2.3.1";
+  const version = "2.4";
 
   // state variables
   window.shellState = {
@@ -27,13 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     inputField,
     outputField,
     htmlElement,
+    version,
+    terminalState: {
+      isMinimized: false,
+      content: "",
+    },
   };
-
-  // init shell
-  initShell();
 
   // load random background image
   setRandomBackground(desktopBackground);
+
+  // init shell
+  initShell();
 
   function initShell() {
     loadSavedTheme();
@@ -43,11 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateTimeDisplay, 1000);
 
     // welcome message => will be shown on startup/reload
-    outputField.innerHTML =
-      `<p class="output-history">valentino panico | shell<br>` +
-      `version ${version}<br><br>` +
-      `type 'commands' for a list of all commands<br>` +
-      `type 'help CMD' to learn about a command</p>`;
+    showBanner();
 
     // setup event listener
     setupEventListeners();

@@ -1,6 +1,8 @@
 // trafficLights.js
 // manage the behavior of macOS-style traffic lights
 
+import { showBanner } from "./output.js";
+
 /**
  * set up event listeners for the traffic light buttons
  */
@@ -46,10 +48,6 @@ export function setupTrafficLights() {
 
   // terminal shortcut
   if (terminalShortcut) {
-    terminalShortcut.addEventListener("click", () => {
-      openTerminal(terminal);
-    });
-
     // add double-click event listener
     terminalShortcut.addEventListener("dblclick", () => {
       openTerminal(terminal);
@@ -63,6 +61,15 @@ export function setupTrafficLights() {
  */
 function closeTerminal(terminal) {
   terminal.classList.add("terminal-hidden");
+
+  // save state to indicate the terminal was closed, not minimized
+  if (window.shellState) {
+    window.shellState.terminalState.isMinimized = false;
+
+    // reset terminal content when closing
+    window.shellState.terminalState.content = "";
+    window.shellState.outputField.innerHTML = "";
+  }
 }
 
 /**
@@ -71,36 +78,53 @@ function closeTerminal(terminal) {
  */
 function minimizeTerminal(terminal) {
   terminal.classList.add("terminal-hidden");
+
+  // save state to indicate the terminal was minimized, not closed
+  if (window.shellState) {
+    window.shellState.terminalState.isMinimized = true;
+
+    // store current content when minimizing
+    window.shellState.terminalState.content =
+      window.shellState.outputField.innerHTML;
+  }
 }
 
 /**
- * maximize the terminal window
+ * maximize the terminal window with smooth transition
  * @param { HTMLElement } terminal - the terminal element
  */
 function maximizeTerminal(terminal) {
-  terminal.style.top = "0";
-  terminal.style.left = "0";
-  terminal.style.width = "100%";
-  terminal.style.height = "100%";
-  terminal.style.borderRadius = "0.5rem";
-  terminal.style.transform = "none";
+  // apply transition for smooth animation
+  terminal.style.transition = "all 0.3s ease";
 
-  // keep track of the previous size and position
-  terminal.dataset.prevWidth = "80%";
-  terminal.dataset.prevHeight = "80%";
+  // maximize with slight delay to ensure smooth transition
+  requestAnimationFrame(() => {
+    terminal.style.top = "0";
+    terminal.style.left = "0";
+    terminal.style.width = "100%";
+    terminal.style.height = "100%";
+    terminal.style.borderRadius = "0.5rem";
+    terminal.style.transform = "none";
+  });
 }
 
 /**
- * restore the terminal to its previous size
+ * restore the terminal to its previous size with smooth transition
  * @param { HTMLElement } terminal - the terminal element
  */
 function restoreTerminal(terminal) {
-  terminal.style.top = "50%";
-  terminal.style.left = "50%";
-  terminal.style.width = terminal.dataset.prevWidth || "80%";
-  terminal.style.height = terminal.dataset.prevHeight || "80%";
-  terminal.style.transform = "translate(-50%, -50%)";
-  terminal.style.borderRadius = "0.5rem";
+  // apply transition for smooth animation
+  terminal.style.transition = "all 0.3s ease";
+
+  // apply restoration with slight delay for smooth transition
+  requestAnimationFrame(() => {
+    terminal.style.top = "50%";
+    terminal.style.left = "50%";
+    terminal.style.width = "80%";
+    terminal.style.height = "80%";
+    terminal.style.borderRadius = "0.5rem";
+    terminal.style.transform = "translate(-50%, -50%)";
+  });
 }
 
 /**
@@ -108,6 +132,33 @@ function restoreTerminal(terminal) {
  * @param { HTMLElement } terminal - the terminal element
  */
 function openTerminal(terminal) {
+  // remove transition first to prevent animation when opening
+  terminal.style.transition = "none";
+
   terminal.classList.remove("terminal-hidden");
+
+  // check if we need to restore content (from minimized state) or reset (from closed state)
+  if (window.shellState) {
+    if (
+      window.shellState.terminalState.isMinimized &&
+      window.shellState.terminalState.content
+    ) {
+      // restore content from minimized state
+      window.shellState.outputField.innerHTML =
+        window.shellState.terminalState.content;
+    } else if (!window.shellState.terminalState.isMinimized) {
+      // reset terminal if it was closed
+      showBanner();
+    }
+  }
+
+  // force reflow to ensure no transition when opening
+  terminal.offsetHeight;
+
+  // restore transition capability after opening
+  setTimeout(() => {
+    terminal.style.transition = "all 0.3s ease";
+  }, 50);
+
   document.getElementById("input-field").focus();
 }
