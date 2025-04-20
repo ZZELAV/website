@@ -21,7 +21,7 @@ export function activateEasterEgg() {
   document.body.style.flexDirection = "column";
   document.body.style.justifyContent = "center";
   document.body.style.alignItems = "center";
-  htmlElement.style.border = "0.5rem solid #ff0000";
+  htmlElement.style.border = "1rem solid #ff0000";
 
   showHackScreen("../static/img/skull_1.png", "../static/img/skull_2.png");
 }
@@ -88,6 +88,10 @@ function showHackScreen(image1Path, image2Path) {
   messageText.style.textAlign = "center";
   messageText.style.fontFamily = "monospace, sans-serif";
   messageText.style.fontWeight = "bold";
+  // add text shadow for glitch effect base
+  messageText.style.textShadow =
+    "0.05em 0 0 rgba(255,0,0,.75), -0.025em -0.05em 0 rgba(0,255,0,.75), 0.025em 0.05em 0 rgba(0,0,255,.75)";
+  messageText.style.position = "relative";
 
   const subText = document.createElement("p");
   subText.textContent = "All your files have been deleted.";
@@ -96,6 +100,33 @@ function showHackScreen(image1Path, image2Path) {
   subText.style.margin = "0";
   subText.style.textAlign = "center";
   subText.style.fontFamily = "monospace, sans-serif";
+
+  // create glitch overlay elements
+  const glitchBefore = document.createElement("span");
+  glitchBefore.textContent = "SYSTEM COMPROMISED";
+  glitchBefore.style.position = "absolute";
+  glitchBefore.style.top = "0";
+  glitchBefore.style.left = "0";
+  glitchBefore.style.width = "100%";
+  glitchBefore.style.height = "100%";
+  glitchBefore.style.color = "#ff0000";
+  glitchBefore.style.clipPath = "rect(0, 0, 0, 0)";
+  glitchBefore.style.display = "block";
+
+  const glitchAfter = document.createElement("span");
+  glitchAfter.textContent = "SYSTEM COMPROMISED";
+  glitchAfter.style.position = "absolute";
+  glitchAfter.style.top = "0";
+  glitchAfter.style.left = "0";
+  glitchAfter.style.width = "100%";
+  glitchAfter.style.height = "100%";
+  glitchAfter.style.color = "#ff0000";
+  glitchAfter.style.clipPath = "rect(0, 0, 0, 0)";
+  glitchAfter.style.display = "block";
+
+  // add glitch elements to the message text container
+  messageText.appendChild(glitchBefore);
+  messageText.appendChild(glitchAfter);
 
   // paste elements
   imageContainer.appendChild(image1);
@@ -134,6 +165,60 @@ function showHackScreen(image1Path, image2Path) {
       pulseDirection = 0.01;
     }
   }, 50);
+
+  // glitch effect animation
+  setInterval(() => {
+    // random glitch timing
+    if (Math.random() > 0.7) {
+      // first glitch element
+      const glitchOffsetX1 = Math.random() * 10 - 5 + "px";
+      const glitchOffsetY1 = Math.random() * 5 - 2.5 + "px";
+      const top1 = Math.floor(Math.random() * 100) + "%";
+      const height1 = Math.floor(Math.random() * 12 + 5) + "px";
+      const width1 = Math.floor(Math.random() * 100 + 50) + "%";
+
+      glitchBefore.style.transform = `translate3d(${glitchOffsetX1}, ${glitchOffsetY1}, 0)`;
+      glitchBefore.style.clipPath = `rect(${top1}, ${width1}, ${height1}, 0)`;
+      glitchBefore.style.color = Math.random() > 0.5 ? "#0ff" : "#f00";
+
+      // second glitch element
+      const glitchOffsetX2 = Math.random() * 10 - 5 + "px";
+      const glitchOffsetY2 = Math.random() * 5 - 2.5 + "px";
+      const top2 = Math.floor(Math.random() * 100) + "%";
+      const height2 = Math.floor(Math.random() * 12 + 5) + "px";
+      const width2 = Math.floor(Math.random() * 100 + 30) + "%";
+
+      glitchAfter.style.transform = `translate3d(${glitchOffsetX2}, ${glitchOffsetY2}, 0)`;
+      glitchAfter.style.clipPath = `rect(${top2}, ${width2}, ${height2}, 0)`;
+      glitchAfter.style.color = Math.random() > 0.5 ? "#ff0" : "#f0f";
+
+      // main text displacement
+      const mainOffset = Math.random() * 6 - 3 + "px";
+      messageText.style.transform = `translate3d(${mainOffset}, 0, 0)`;
+
+      // reset after short random duration (10-150ms)
+      setTimeout(() => {
+        glitchBefore.style.clipPath = "rect(0, 0, 0, 0)";
+        glitchAfter.style.clipPath = "rect(0, 0, 0, 0)";
+        messageText.style.transform = "translate3d(0, 0, 0)";
+      }, Math.random() * 140 + 10);
+    }
+  }, 100);
+
+  // screen distortion effect (occasional)
+  setInterval(() => {
+    if (Math.random() > 0.9) {
+      // apply distortion to the hack container
+      hackContainer.style.filter = `blur(${Math.random() * 3}px) hue-rotate(${
+        Math.random() * 360
+      }deg)`;
+
+      // reset after brief moment
+      setTimeout(() => {
+        hackContainer.style.filter = "none";
+      }, Math.random() * 100 + 50);
+    }
+  }, 500);
 
   // delete localStorage (simulate data loss)
   localStorage.clear();
