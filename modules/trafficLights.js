@@ -59,7 +59,7 @@ export function setupTrafficLights() {
  * close the terminal window
  * @param { HTMLElement } terminal - the terminal element
  */
-function closeTerminal(terminal) {
+export function closeTerminal(terminal) {
   terminal.classList.add("hidden");
 
   // save state to indicate the terminal was closed, not minimized
@@ -69,6 +69,7 @@ function closeTerminal(terminal) {
     // reset terminal content when closing
     window.shellState.terminalState.content = "";
     window.shellState.outputField.innerHTML = "";
+    window.shellState.inputField.value = "";
   }
 }
 

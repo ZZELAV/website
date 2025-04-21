@@ -11,12 +11,14 @@ import { extractTimeFromPrompt } from "./time.js";
 import { changeUser, logout } from "./user.js";
 import { switchTheme, showThemes } from "./theme.js";
 import { activateEasterEgg } from "./easterEgg.js";
+import { closeTerminal } from "./trafficLights.js";
 
 // available commands for autocomplete
 export const availableCommands = [
   "about",
   "clear",
   "commands",
+  "exit",
   "help",
   "logout",
   "projects",
@@ -86,6 +88,11 @@ export function processCommand(command) {
       showCommands();
       break;
 
+    case "exit":
+      const terminal = document.getElementById("terminal");
+      closeTerminal(terminal);
+      break;
+
     case "help":
       showHelp();
       break;
@@ -151,9 +158,9 @@ function showAbout() {
  */
 function showCommands() {
   outputGenerator(
-    `about                help CMD              repo                  themes<br>` +
-      `clear                logout                socials               user NAME<br>` +
-      `commands             projects              theme #               whois`
+    `about                exit                projects              theme #               whois<br>` +
+      `clear                help CMD            repo                  themes<br>` +
+      `commands             logout              socials               user NAME`
   );
 }
 
@@ -176,6 +183,10 @@ function showHelp(command) {
 
     case "commands":
       outputGenerator(`commands<br>` + `- shows a list of available commands`);
+      break;
+
+    case "exit":
+      outputGenerator(`exit<br>` + `- close the terminal`);
       break;
 
     case "help":
