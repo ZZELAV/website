@@ -60,7 +60,7 @@ export function setupTrafficLights() {
  * @param { HTMLElement } terminal - the terminal element
  */
 function closeTerminal(terminal) {
-  terminal.classList.add("terminal-hidden");
+  terminal.classList.add("hidden");
 
   // save state to indicate the terminal was closed, not minimized
   if (window.shellState) {
@@ -77,7 +77,7 @@ function closeTerminal(terminal) {
  * @param { HTMLElement } terminal - the terminal element
  */
 function minimizeTerminal(terminal) {
-  terminal.classList.add("terminal-hidden");
+  terminal.classList.add("hidden");
 
   // save state to indicate the terminal was minimized, not closed
   if (window.shellState) {
@@ -139,7 +139,7 @@ function openTerminal(terminal) {
   // remove transition first to prevent animation when opening
   terminal.style.transition = "none";
 
-  terminal.classList.remove("terminal-hidden");
+  terminal.classList.remove("hidden");
 
   // check if we need to restore content (from minimized state) or reset (from closed state)
   if (window.shellState) {

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputField = document.getElementById("input-field");
   const outputField = document.getElementById("output-wrapper");
   const desktopBackground = document.getElementById("desktop-background");
-  const version = "2.4.1";
+  const version = "2.4.2";
   const hostname = "valentino-panico.ch";
 
   // state variables
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     username: localStorage.getItem("username") || "guest",
     commandHistory: [],
     historyIndex: 0,
+    htmlElement,
     inputPrompt,
     inputField,
     outputField,
-    htmlElement,
     version,
     hostname,
     terminalState: {

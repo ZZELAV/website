@@ -193,7 +193,7 @@ a {
   will-change: transform, width, height, top, left;
 }
 
-.terminal-hidden {
+.hidden {
   transform: translate(-50%, -50%) scale(0.95);
   opacity: 0;
   pointer-events: none;
