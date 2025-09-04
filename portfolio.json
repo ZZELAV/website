@@ -1,0 +1,148 @@
+{
+    "profile": {
+        "firstName": "Valentino",
+        "lastName": "Panico",
+        "birthdate": "2004-08-28",
+        "nationality": "Schweiz",
+        "title": "IT Techniker",
+        "location": {
+            "city": "Kreuzlingen",
+            "country": "Schweiz"
+        },
+        "avatar": "avatar.jpg",
+        "summary": "IT Techniker, der eine Informatik EFZ Lehre abgeschlossen hat und im Support und Infrastruktur Team arbeitet."
+    },
+
+    "contact": {
+        "email": "valentino.panico@icloud.com",
+        "website": "https://valentino-panico.ch"
+    },
+
+    "experience": [
+        {
+            "id": "exp1",
+            "position": "IT Techniker",
+            "company": "Lenze Swiss AG",
+            "location": {
+                "city": "Romanshorn",
+                "country": "Schweiz"
+            },
+            "startDate": "2025-05",
+            "endDate": null,
+            "current": true,
+            "description": "Lokale sowie internationale Arbeiten. Support, Unterhalt IT Infrastruktur wie Server, Client und Drucker. Evaluation von neuer Software.",
+            "technologies": ["Windows", "Azure", "Intune", "Veeam", "vSphere", "ServiceNow", "Citrix"]
+        },
+        {
+            "id": "exp2",
+            "position": "Infanteriebesatzerunteroffizier",
+            "company": "Schweizer Armee",
+            "location": {
+                "city": "Chamblon",
+                "country": "Schweiz"
+            },
+            "startDate": "2024-07",
+            "endDate": "2025-05",
+            "current": false,
+            "description": "Führen und Ausbildung von Soldaten im Radschützenpanzer.",
+            "technologies": []
+        },
+        {
+            "id": "exp3",
+            "position": "Lehre Informatiker",
+            "company": "Lenze Swiss AG",
+            "location": {
+                "city": "Romanshorn",
+                "country": "Schweiz"
+            },
+            "startDate": "2020-08",
+            "endDate": "2024-07",
+            "current": false,
+            "description": "Computer und Komponenten installieren. Anfragen nach Computerunterstützung bearbeiten und lösen. Datensicherheit und Datenschutz gewährleisten. Serversysteme und Netzwerke betreiben und unterhalten.",
+            "technologies": ["Windows", "Azure", "Intune", "Veeam", "vSphere", "ServiceNow", "Citrix"]
+        }
+    ],
+
+    "education": [
+        {
+            "id": "edu1",
+            "degree": "Informatiker EFZ",
+            "field": "Informatik",
+            "institution": "BZT Frauenfeld",
+            "location": {
+                "city": "Frauenfeld",
+                "country": "Schweiz"
+            },
+            "startDate": "2020-08",
+            "endDate": "2024-07",
+            "grade": "5.2/6.0"
+        },
+        {
+            "id": "edu2",
+            "degree": "Oberstufe",
+            "field": "Niveau E",
+            "institution": "SBW Talent Campus Bodensee",
+            "location": {
+                "city": "Kreuzlingen",
+                "country": "Schweiz"
+            },
+            "startDate": "2017-08",
+            "endDate": "2020-07",
+            "grade": ""
+        },
+        {
+            "id": "edu3",
+            "degree": "Primarschule",
+            "field": "",
+            "institution": "Schulzentrum Bernegg",
+            "location": {
+                "city": "Kreuzlingen",
+                "country": "Schweiz"
+            },
+            "startDate": "2011-08",
+            "endDate": "2017-07",
+            "grade": ""
+        }
+    ],
+
+    "skills": {
+        "technical": [
+            { "name": "Windows", "level": "Expert" },
+            { "name": "Azure", "level": "Advanced" },
+            { "name": "Intune", "level": "Advanced" },
+            { "name": "Veeam", "level": "Advanced" },
+            { "name": "vSphere", "level": "Advanced" },
+            { "name": "ServiceNow", "level": "Advanced" },
+            { "name": "Citrix", "level": "Advanced" },
+            { "name": "Linux", "level": "Advanced" },
+            { "name": "Docker", "level": "Advanced" },
+            { "name": "Java", "level": "Intermediate" },
+            { "name": "C#", "level": "Intermediate" },
+            { "name": "PowerShell", "level": "Intermediate" },
+            { "name": "HTML/CSS/JS", "level": "Intermediate" },
+            { "name": "SQL", "level": "Intermediate" }
+        ],
+        "languages": [
+            { "name": "Deutsch", "level": "Muttersprache" },
+            { "name": "Englisch", "level": "Verhandlungssicher" },
+            { "name": "Italienisch", "level": "Gut (zweite Muttersprache)" }
+        ]
+    },
+
+    "certifications": [],
+
+    "interests": [
+        "Open Source",
+        "Technologie",
+        "Gaming",
+        "Motorsport",
+        "Wandern/Laufen"
+    ],
+
+    "meta": {
+        "version": "1.0",
+        "lastUpdated": "2025-09-04",
+        "theme": "glow",
+        "language": "de"
+    }
+}
