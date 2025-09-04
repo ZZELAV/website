@@ -21,12 +21,43 @@ function syntaxHighlight(json) {
 
 function formatJSON(obj) {
     let json = JSON.stringify(obj, null, 2);
-    
+    let result = '';
+    let inString = false;
+    let escapeNext = false;
+    let spanStack = [];
+
     json = syntaxHighlight(json);
+
+    for (let i = 0; i < json.length; i++) {
+        let char = json[i];
+        let remaining = json.substring(i);
+        
+        if (remaining.startsWith('<span')) {
+            let endIndex = remaining.indexOf('>');
+            if (endIndex !== -1) {
+                let spanTag = remaining.substring(0, endIndex + 1);
+                result += spanTag;
+                i += endIndex;
+                spanStack.push(true);
+                continue;
+            }
+        }
+        
+        if (remaining.startsWith('</span>')) {
+            result += '</span>';
+            i += 6;
+            spanStack.pop();
+            continue;
+        }
+        
+        if (spanStack.length === 0 && /[{}[\],]/.test(char)) {
+            result += '<span class="json-bracket">' + char + '</span>';
+        } else {
+            result += char;
+        }
+    }
     
-    json = json.replace(/([{}[\],])/g, '<span class="json-bracket">$1</span>');
-    
-    return json;
+    return result;
 }
 
 async function loadJSON() {

@@ -9,13 +9,13 @@
             "city": "Kreuzlingen",
             "country": "Schweiz"
         },
-        "avatar": "avatar.jpg",
+        "avatar": "<a href='./avatar.jpg' target='_blank'>avatar.jpg</a>",
         "summary": "IT Techniker, der eine Informatik EFZ Lehre abgeschlossen hat und im Support und Infrastruktur Team arbeitet."
     },
 
     "contact": {
-        "email": "valentino.panico@icloud.com",
-        "website": "https://valentino-panico.ch"
+        "email": "<a href='mailto:valentino.panico@icloud.com'>valentino.panico@icloud.com</a>",
+        "website": "<a href='https://www.valentino-panico.ch' target='_blank'>https://valentino-panico.ch</a>"
     },
 
     "experience": [
@@ -140,7 +140,7 @@
     ],
 
     "meta": {
-        "version": "1.0",
+        "version": "<a href='https://github.com/ZZELAV/website' target='_blank'>1.0</a>",
         "lastUpdated": "2025-09-04",
         "theme": "glow",
         "language": "de"

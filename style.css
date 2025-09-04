@@ -32,6 +32,10 @@ body {
     padding: 1rem;
 }
 
+a {
+    color: unset;
+}
+
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;
