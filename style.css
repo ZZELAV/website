@@ -1,16 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 :root {
-    /* https://pbs.twimg.com/media/G0-3SNXXMAAPN3r?format=jpg&name=large */
     --bg: #0b0b0b;
     --text-primary: #e4e4e4;
-    --text-secondary: #666666;
-    --json-key: #f64d00;
-    --json-string: #c31fe4;
-    --json-number: #c31fe4;
-    --json-bool: #c31fe4;
-    --json-null: #c31fe4;
-    --json-bracket: var(--text-primary);
 }
 
 * {
@@ -24,53 +16,13 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.2rem;
+    font-size: 5rem;
     background: var(--bg);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-    padding: 1rem;
-}
-
-a {
-    color: unset;
-}
-
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-
-.json-key {
-    color: var(--json-key);
-    text-shadow: 0 0 8px var(--json-key);
-}
-
-.json-string {
-    color: var(--json-string);
-    text-shadow: 0 0 8px var(--json-string);
-}
-
-.json-number {
-    color: var(--json-number);
-    text-shadow: 0 0 8px var(--json-number);
-}
-
-.json-bool {
-    color: var(--json-bool);
-    text-shadow: 0 0 8px var(--json-bool);
-}
-
-.json-null {
-    color: var(--json-null);
-    text-shadow: 0 0 8px var(--json-null);
-}
-
-.json-bracket {
-    color: var(--json-bracket);
-    text-shadow: 0 0 6px var(--json-bracket);
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
 }
